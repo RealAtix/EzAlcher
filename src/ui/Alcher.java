@@ -8,6 +8,7 @@ import java.awt.event.InputEvent;
 
 
 
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -50,7 +51,7 @@ public class Alcher extends JFrame {
       }
         while(run == true) {
             
-             final long rng = getRandomInteger(2388, 1313);  
+             final long rng = getRandomInteger(2088, 1013);  
              
              Thread t = new Thread(new Runnable() {
          	    public void run() {
@@ -64,8 +65,13 @@ public class Alcher extends JFrame {
              try{Thread.sleep(rng);}catch(InterruptedException ie){}
              clickMouse();
              mouseClicks = mouseClicks + 1;
-             System.out.println("Mouse Clicked #" + mouseClicks);
-             timer.setText("Mouseclicks: " + mouseClicks);
+             if (run != false) {
+            	 System.out.println("Mouse Clicked #" + mouseClicks);
+                 timer.setText("Mouseclicks: " + mouseClicks);
+             } else {
+            	 timer.setText("Stopped");
+             }
+             
           
         }
        
@@ -119,12 +125,12 @@ public class Alcher extends JFrame {
      
      private class thehandler implements ActionListener{
 	     public void actionPerformed(ActionEvent evt){
-	         
+	    	 
 	         if(evt.getSource() == start){
 	             System.out.println("Starting");
 	             timer.setText("Starting");
+	             mouseClicks = 0;
 	             run = true;
-	             System.out.println("Clicking every " + 22671 / 1000  + "-" + 37361 / 1000 + " seconds.");
 	             try{
 	                 Thread.sleep(1000);
 	             }catch(InterruptedException ie){};
@@ -138,10 +144,9 @@ public class Alcher extends JFrame {
 	         }
 	         
 	         if(evt.getSource() == stop){
-	             System.out.println("Stopping");
-	             timer.setText("Stopped");
+	             //System.out.println("Stopping in 1 click");
+	             timer.setText("Stopping in 1 click");
 	             timer2.setText("");
-	             mouseClicks = 0;
 	             run = false;
 	         }
 	           
